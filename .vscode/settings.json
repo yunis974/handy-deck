@@ -1,0 +1,6 @@
+{
+    // Le CMakeLists.txt est piloté par PlatformIO : CMake Tools ne doit pas le configurer.
+    "cmake.configureOnOpen": false,
+    "cmake.ignoreCMakeListsMissing": true,
+    "cmake.automaticReconfigure": false
+}
