@@ -37,6 +37,11 @@ int menu_on_input(input_event_t ev, int app_count)
     if (ev == INPUT_CLICK || ev == INPUT_ENC_CLICK) {
         return selected;
     }
+
+    if (ev == INPUT_LONG_PRESS)
+    {
+        ui_boot_animation();
+    }
     return -1;
 }
 

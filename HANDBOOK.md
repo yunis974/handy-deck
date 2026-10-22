@@ -138,22 +138,28 @@ Trois idées clés :
 ## 5. Les fichiers du projet
 
 ```
-src/
-├── main.c            boucle principale + liste des apps (apps[])
+include/                  les en-têtes (.h)
 ├── app.h             définition d'une app (app_t)
-├── input.c / .h      encodeur + boutons → événements
-├── display.c / .h    pilote écran + fonctions de dessin
+├── input.h           encodeur + boutons → événements
+├── display.h         pilote écran + fonctions de dessin
 ├── font5x7.h         police 5x7 (ASCII 32 → 126)
-├── ui.c / .h         style : barre de statut, cadre, animation de boot
-├── menu.c / .h       le lanceur d'apps
+├── ui.h              style : barre de statut, cadre, animation de boot
+├── menu.h            le lanceur d'apps
 └── apps/
-    ├── apps.h            déclare toutes les apps
+    └── apps.h        déclare toutes les apps
+src/                      le code (.c)
+├── main.c            boucle principale + liste des apps (apps[])
+├── input.c
+├── display.c
+├── ui.c
+├── menu.c
+└── apps/
     ├── app_input_test.c  ← le modèle à copier
     ├── app_chrono.c
     └── app_sysinfo.c
 ```
 
-Tous les `.c` dans `src/` (sous-dossiers compris) sont compilés automatiquement. Pas besoin de toucher au `CMakeLists.txt` quand tu ajoutes un fichier.
+Tous les `.c` dans `src/` (sous-dossiers compris) sont compilés automatiquement. Pas besoin de toucher au `CMakeLists.txt` quand tu ajoutes un fichier. Les `.h` vont dans `include/`.
 
 ---
 
@@ -222,7 +228,7 @@ const app_t app_dice = {
 };
 ```
 
-### Étape 2 : la déclarer dans `src/apps/apps.h`
+### Étape 2 : la déclarer dans `include/apps/apps.h`
 
 ```c
 extern const app_t app_dice;
@@ -564,12 +570,12 @@ Pins libres sur le Super Mini : **2, 3, 4, 5, 6, 7, 10, 20**. Évite 8 et 9 (éc
 | Changer l'ordre des apps | `src/main.c` | L'ordre du tableau `apps[]` |
 | Changer la vitesse de la boucle | `src/main.c` | `FRAME_MS` (moins = plus fluide, mais plus de consommation) |
 | Couper les logs d'entrées | `src/main.c` | `LOG_INPUTS 0` |
-| Changer la durée de l'appui long | `src/input.h` | `INPUT_LONG_PRESS_MS` |
+| Changer la durée de l'appui long | `include/input.h` | `INPUT_LONG_PRESS_MS` |
 | Changer l'animation de démarrage | `src/ui.c` | `ui_boot_animation()` : titre, tableau `lines[]`, délais. Pour la supprimer, retire l'appel dans `main.c`. |
 | Changer la barre de statut | `src/ui.c` | `ui_draw_statusbar()` |
 | Changer l'aspect du menu | `src/menu.c` | `ITEM_H`, `VISIBLE_ITEMS`, et le bloc `if (index == selected)` |
 | Retourner l'écran | `src/display.c` | `esp_lcd_panel_mirror(panel, true, true)` dans `display_init()` |
-| Changer les pins de l'écran | `src/display.h` | `DISPLAY_PIN_SDA`, `DISPLAY_PIN_SCL` |
+| Changer les pins de l'écran | `include/display.h` | `DISPLAY_PIN_SDA`, `DISPLAY_PIN_SCL` |
 
 ### Ajouter une icône dans la barre de statut
 

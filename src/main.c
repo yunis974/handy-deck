@@ -20,6 +20,7 @@ static const app_t *apps[] = {
     &app_input_test,
     &app_chrono,
     &app_sysinfo,
+    &app_dice,
 };
 #define APP_COUNT ((int)(sizeof(apps) / sizeof(apps[0])))
 

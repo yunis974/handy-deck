@@ -53,6 +53,18 @@ void ui_draw_frame(int x, int y, int w, int h)
     }
 }
 
+void ui_invert_frame(int x, int y, int w, int h)
+{
+    int c = 3;  // même coin coupé que ui_draw_frame
+
+    // ligne par ligne, en raccourcissant les lignes du haut à gauche et du bas à droite
+    for (int row = 0; row < h; row++) {
+        int left = (row < c) ? c - row : 0;
+        int right = (row > h - 1 - c) ? row - (h - 1 - c) : 0;
+        display_invert_rect(x + left, y + row, w - left - right, 1);
+    }
+}
+
 void ui_draw_text_centered(int y, const char *text)
 {
     int x = (DISPLAY_WIDTH - display_text_width(text)) / 2;

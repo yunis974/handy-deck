@@ -6,3 +6,4 @@
 extern const app_t app_input_test;
 extern const app_t app_chrono;
 extern const app_t app_sysinfo;
+extern const app_t app_dice;

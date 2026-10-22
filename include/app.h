@@ -6,7 +6,7 @@
 //
 // Pour ajouter une app :
 //   1. copier src/apps/app_input_test.c en src/apps/app_truc.c et renommer la variable en app_truc
-//   2. ajouter  extern const app_t app_truc;  dans src/apps/apps.h
+//   2. ajouter  extern const app_t app_truc;  dans include/apps/apps.h
 //   3. ajouter  &app_truc  dans le tableau apps[] de main.c
 //
 // Cycle de vie :
